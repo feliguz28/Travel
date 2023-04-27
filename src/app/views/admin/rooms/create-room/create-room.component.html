@@ -1,0 +1,54 @@
+<div class="background">
+
+</div>
+<div class="main">
+    <form [formGroup]="newRoom">
+        <div class="form-create">
+            <h1>Create Room</h1>
+            <img mat-card-image src="../../../assets/images/avatar.png">
+            <div class="inputs">
+                <mat-form-field appearance="outline">
+                    <mat-label>Enter name Room</mat-label>
+                    <input matInput placeholder="Room Name" formControlName="roomName">
+                    <mat-icon matSuffix>airline_seat_individual_suite</mat-icon>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Enter location Room</mat-label>
+                    <input matInput placeholder="Room Location" formControlName="location">
+                    <mat-icon matSuffix>location_city</mat-icon>
+                </mat-form-field>
+            </div>
+            <div class="inputs">
+                <mat-form-field appearance="outline">
+                    <mat-label>Enter Prise</mat-label>
+                    <input matInput placeholder="Price" formControlName="value" type="number">
+                    <mat-icon matSuffix>attach_money</mat-icon>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Room Type</mat-label>
+                    <mat-select [formControl]="roomTypeControl" name="roomTypeId">
+                        <mat-option *ngFor="let roomType of roomsType" [value]="roomType.roomTypeId">
+                            {{roomType.roomTypeName}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>               
+            </div>
+                <mat-form-field class="description">
+                    <mat-label>Leave a description</mat-label>
+                    <textarea matInput placeholder="Ex. This room is equipped with..." formControlName="roomDescription"></textarea>
+                  </mat-form-field>
+            <p><mat-checkbox formControlName="status">Active</mat-checkbox></p>
+            <div class="buttons">
+                <button mat-fab extended color="accent" [disabled]="!newRoom.valid" (click)="CreateRoom(newRoom.value)">
+                    <mat-icon>add</mat-icon>
+                    Create
+                </button>
+                <a href="/rooms/{{idHotel}}"><button mat-fab extended color="accent">
+                        <mat-icon>keyboard_return</mat-icon>
+                        Return
+                    </button></a>
+            </div>
+        </div>
+    </form>
+
+</div>

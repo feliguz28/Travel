@@ -1,0 +1,27 @@
+<div class="background">
+
+</div>
+<div class="main">
+    <form [formGroup] = "login">
+        <div class="form-login">
+            <img mat-card-image src="../../../assets/images/avatar.png">
+            <mat-form-field appearance="outline">
+                <mat-label>Enter your user</mat-label>
+                <input matInput placeholder="User" formControlName="user">
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+              </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Enter your password</mat-label>
+                <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field> 
+            <button mat-fab extended color="accent" [disabled]="!login.valid" (click)="goToAdmin()" >
+                <mat-icon>login</mat-icon>
+                Login
+              </button>
+        </div> 
+    </form>
+
+</div>

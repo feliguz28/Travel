@@ -1,0 +1,41 @@
+<div class="main">
+        <div class="table-data">
+          <table *ngIf="paginateReserveI.items">
+              <th>Reserve ID</th>
+              <th>Date CheckIn</th>
+              <th>Date CheckOut</th>
+              <th>Number Person</th>
+              <th>Location</th>
+              <th>Status</th>
+              <th>Value</th>
+              <th>Delete</th>
+              <tr *ngFor="let reserve of paginateReserveI.items">
+                <td>{{ reserve.reserveId }}</td>
+                <td>{{ reserve.dateCheckIn }}</td>
+                <td>{{ reserve.dateCheckOut }}</td>
+                <td>{{ reserve.numberPersons }}</td>
+                <td>{{ reserve.location }}</td>
+                <td>          
+                  <mat-checkbox [checked]="reserve.status">
+                  </mat-checkbox>
+                </td>
+                <td>{{ reserve.value }}</td>
+                <td>
+                  <button class="button-action" mat-fab color="accent">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+              </tr>
+            </table>
+        </div>
+        <div class="paginator">
+          <mat-paginator
+          #paginatorReports
+          [length]="length"
+          [pageSize]="pageSize"
+          (page)="pageEvent($event)"
+          [pageSizeOptions]="pageSizeOptions"
+          >
+          </mat-paginator>
+        </div>
+  </div>

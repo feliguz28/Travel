@@ -1,0 +1,105 @@
+<div class="background">
+
+</div>
+<div class="dashboard">
+
+    <mat-stepper linear #stepper>
+        <mat-step [stepControl]="emailContact">
+          <form [formGroup]="emailContact">
+            <mat-card class="card">
+                <mat-card-header>
+                  <mat-card-title>{{roomI.roomName}}</mat-card-title>
+                  <mat-card-subtitle>Reserve</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <img mat-card-image src="../../../assets/images/decameron.jpg">
+                    <p>
+                      {{roomI.roomDescription}}                     
+                    </p>
+                    <div class="labels">
+                      <label>Location: {{roomI.location}}</label>
+                      <label>Type Room: {{type}}</label>
+                      <hr>
+                    </div>
+                    <div>
+                        <label>Value: {{roomI.value}}</label>
+                        <label>CheckIn: {{CheckIn}}</label>
+                        <label>CheckOut: {{CheckOut}}</label>
+                        <label>Number Persons: {{numberPerson}}</label>
+                        <div>
+                          <mat-form-field>
+                            <input matInput placeholder="Email" formControlName="email" required>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                </mat-card-content>
+              </mat-card>
+            <div>
+              <button mat-flat-button matStepperNext [disabled]="!emailContact.valid" color="accent" (click)="CreateReserve(emailContact)">Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="people" optional>
+          <form [formGroup]="people">
+            <ng-template matStepLabel>Add People</ng-template>
+            <div class="forms">
+                <mat-form-field appearance="fill">
+                  <mat-label>First Name</mat-label>
+                  <input matInput formControlName="lastName" placeholder="Ex. Felipe"required>
+                </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Last Name</mat-label>
+                <input matInput formControlName="firstName" placeholder="Ex. Guzman"required>
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Gender</mat-label>
+                <input matInput formControlName="gender" placeholder="Ex. Male"required>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Room Type</mat-label>
+                <mat-select [formControl]="documentTypeControl" name="documentTypeId">
+                    <mat-option *ngFor="let documentType of documentsType" [value]="documentType.documentTypeId">
+                        {{documentType.description}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>   
+              <mat-form-field appearance="fill">
+                <mat-label>Document</mat-label>
+                <input matInput formControlName="document" type="number" placeholder="Ex. 1014265923"required>
+              </mat-form-field>
+            </div>
+            <button mat-fab extended color="accent" (click)="CreateClient(people)">
+              <mat-icon>add</mat-icon>
+              Create
+            </button>
+            <div class="buttons">
+              <button mat-flat-button color="accent" matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Done</ng-template>
+          <form [formGroup]="emergencyContact">
+            <ng-template matStepLabel>Add Contact Emergency</ng-template>
+            <div class="forms">
+                <mat-form-field appearance="fill">
+                  <mat-label>First Name</mat-label>
+                  <input matInput formControlName="lastName" placeholder="Ex. Felipe"required>
+                </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Last Name</mat-label>
+                <input matInput formControlName="firstName" placeholder="Ex. Guzman"required>
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Number</mat-label>
+                <input matInput formControlName="number" placeholder="Ex. Male"required>
+              </mat-form-field>
+            </div>
+          </form>
+          <div>
+            <button mat-flat-button color="accent" (click)="CreateContactEmergency(emergencyContact)">Done</button>
+          </div>
+        </mat-step>
+      </mat-stepper>
+    
+</div>

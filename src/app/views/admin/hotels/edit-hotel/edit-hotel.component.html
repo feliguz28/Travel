@@ -1,0 +1,44 @@
+<div class="background">
+
+</div>
+<div class="main">
+    <form [formGroup] = "editHotel">
+        <div class="form-create">
+            <h1>Edit Hotel</h1>
+            <img mat-card-image src="../../../assets/images/avatar.png">
+            <div class="inputs">
+                <mat-form-field appearance="outline">
+                    <mat-label>Enter name Hotel</mat-label>
+                    <input matInput placeholder="Hotel Name" formControlName="hotelName" [(ngModel)]="hotelI.hotelName">
+                    <mat-icon matSuffix>hotel</mat-icon>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Enter location Hotel</mat-label>
+                    <input matInput placeholder="Hotel Location" formControlName="hotelLocation" [(ngModel)]="hotelI.hotelLocation">
+                    <mat-icon matSuffix>location_city</mat-icon>
+                </mat-form-field>
+            </div>
+            <div class="inputs">
+                <mat-form-field appearance="outline">
+                    <mat-label>Enter Median Prise</mat-label>
+                    <input matInput placeholder="Median Price" formControlName="value" type="number" [(ngModel)]="hotelI.value">
+                    <mat-icon matSuffix>attach_money</mat-icon>
+                </mat-form-field>
+                <p><mat-checkbox formControlName="status">Active</mat-checkbox></p>
+            </div>
+            <div class="buttons">
+                <button mat-fab extended color="accent" [disabled]="!editHotel.valid" (click)="EditHotel(editHotel.value)">
+                    <mat-icon>edit</mat-icon>
+                    Edit
+                </button>
+                <a href="admin">
+                    <button mat-fab extended color="accent">
+                        <mat-icon>keyboard_return</mat-icon>
+                        Return
+                    </button>
+                </a>
+            </div>
+        </div>
+    </form>
+
+</div>

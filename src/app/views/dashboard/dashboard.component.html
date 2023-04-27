@@ -1,0 +1,77 @@
+<div class="background">
+
+</div>
+<div class="dashboard">
+
+  <div class="form">
+      <form [formGroup] = "range" (ngSubmit)="searchRooms(range.value)">
+        <div class="search">
+        <mat-form-field appearance="fill">
+            <mat-label>Enter a date range</mat-label>
+            <mat-date-range-input [rangePicker]="picker">
+              <input matStartDate formControlName="start" placeholder="Start date">
+              <input matEndDate formControlName="end" placeholder="End date">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field> 
+        <div>
+          <mat-form-field>
+            <mat-label>Location</mat-label>
+            <input formControlName="Location" matInput placeholder="Ex. Bogota">
+          </mat-form-field>        
+        </div> 
+        <div>
+          <mat-form-field>
+            <mat-label>Number Person</mat-label>
+            <input type="number" formControlName="NumberPerson" matInput placeholder="Ex. 1">
+          </mat-form-field>       
+        </div>
+        <div>
+          <button mat-fab extended color="accent" [disabled]="!range.valid" (onclick)="searchRooms(range.value)">
+            <mat-icon>search</mat-icon>
+            Search
+          </button>
+        </div> 
+      </div>
+      </form>
+  </div>
+  <div class="cards" *ngIf="paginateRoomAvailableI && paginateRoomAvailableI.items.length > 0">
+    <mat-card class="card" *ngFor="let room of paginateRoomAvailableI.items" >
+      <mat-card-header>
+        <mat-card-title>{{room.hotelName}}</mat-card-title>
+        <mat-card-subtitle>{{room.roomName}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+          <img mat-card-image src="../../../assets/images/decameron.jpg">
+          <p>
+            {{room.roomDescription}}
+          </p>
+          <div>
+            <label>Value: {{room.value}}</label>
+            <label>Room Type: {{room.roomTypeName}}</label>
+            <label>Location: {{room.location}}</label>
+            <label>Max People: {{room.maxPeople}}</label>
+          </div>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-fab extended color="accent" (click)="goToReservate(room.roomId, room.roomTypeName)">
+          <mat-icon>bookmark</mat-icon>
+          Reserve
+        </button>
+      </mat-card-actions>
+    </mat-card>
+    
+  </div>
+  <div class="paginator" *ngIf="showPager">
+    <mat-paginator
+    #paginatorReports
+    [length]="length"
+    [pageSize]="pageSize"
+    (page)="pageEvent($event)"
+    [pageSizeOptions]="pageSizeOptions"
+    >
+    </mat-paginator>
+  </div>
+  
+</div>
